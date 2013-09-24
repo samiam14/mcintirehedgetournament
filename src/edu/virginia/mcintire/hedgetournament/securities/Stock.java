@@ -1,4 +1,4 @@
-package edu.virginia.mcintire.hedgetournamet.securities;
+package edu.virginia.mcintire.hedgetournament.securities;
 
 public class Stock extends Security
 {
