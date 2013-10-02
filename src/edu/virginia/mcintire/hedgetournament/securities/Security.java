@@ -17,9 +17,9 @@ public abstract class Security
 	_symbol = symbol;
     }
 
-    public void addQuote(Date date, Quote quote)
+    public void addQuote(Quote quote)
     {
-	_quotes.put(date, quote);
+	_quotes.put(quote.getDate(), quote);
     }
     
     public abstract double calculateDelta();
