@@ -4,21 +4,18 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Stock extends Security
-{
+public class Stock extends Security {
     private Map<Date, Map<Double, Option>> _optionChain;
-    
-    public Stock(String symbol)
-    {
+
+    public Stock(String symbol) {
 	super(symbol);
 	_optionChain = new HashMap<Date, Map<Double, Option>>();
     }
-    
-    public void addOption(Option newOption) throws Exception
-    {
+
+    public void addOption(Option newOption) throws Exception {
 	Map<Double, Option> expirationGroup;
-	if(newOption.getUnderlier().getSymbol() == _symbol) {
-	    if(!_optionChain.containsKey(newOption.getExpiration())) {
+	if (newOption.getUnderlier().getSymbol() == _symbol) {
+	    if (!_optionChain.containsKey(newOption.getExpiration())) {
 		expirationGroup = new HashMap<Double, Option>();
 		_optionChain.put(newOption.getExpiration(), expirationGroup);
 	    } else {
@@ -31,24 +28,20 @@ public class Stock extends Security
     }
 
     @Override
-    public double calculateDelta()
-    {
+    public double calculateDelta() {
 	return 1;
     }
 
     @Override
-    public double calculateGamma()
-    {
+    public double calculateGamma() {
 	return 0;
     }
-    
-    public Map<Double, Option> getExpirationGroup(Date expiration)
-    {
+
+    public Map<Double, Option> getExpirationGroup(Date expiration) {
 	return _optionChain.get(expiration);
     }
-    
-    public Map<Date, Map<Double, Option>> getOptionChain()
-    {
+
+    public Map<Date, Map<Double, Option>> getOptionChain() {
 	return _optionChain;
     }
 

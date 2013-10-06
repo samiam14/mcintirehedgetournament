@@ -6,38 +6,36 @@ import java.util.Map;
 
 import edu.virginia.mcintire.hedgetournament.trading.Quote;
 
-public abstract class Security
-{
+public abstract class Security {
     protected String _symbol;
     protected Map<Date, Quote> _quotes;
 
-    public Security(String symbol)
-    {
+    public Security(String symbol) {
 	_quotes = new HashMap<Date, Quote>();
 	_symbol = symbol;
     }
 
-    public void addQuote(Quote quote)
-    {
+    public void addQuote(Quote quote) {
 	_quotes.put(quote.getDate(), quote);
     }
-    
+
     public abstract double calculateDelta();
 
     public abstract double calculateGamma();
 
-    public Quote getQuote(Date date)
-    {
+    public Quote getQuote(Date date) {
 	return _quotes.get(date);
     }
-    
-    public Map<Date, Quote> getQuotes()
-    {
+
+    public Map<Date, Quote> getQuotes() {
 	return _quotes;
     }
-    
-    public String getSymbol()
-    {
+
+    public String getSymbol() {
 	return _symbol;
+    }
+
+    public boolean equals(Security sec) {
+	return sec.getSymbol() == _symbol;
     }
 }
