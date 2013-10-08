@@ -1,4 +1,4 @@
-package edu.virginia.mcintire.hedgetournament.portfolio;
+package edu.virginia.mcintire.hedgetournament.booking;
 
 import edu.virginia.mcintire.hedgetournament.securities.Security;
 import edu.virginia.mcintire.hedgetournament.trading.Transaction;
