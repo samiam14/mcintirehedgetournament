@@ -6,10 +6,13 @@ import java.util.Map;
 
 public class Stock extends Security {
     private Map<Date, Map<Double, Option>> _optionChain;
-
-    public Stock(String symbol) {
+    // TODO - Implement market volatility
+    private double _volatility;
+    
+    public Stock(String symbol, double vol) {
 	super(symbol);
 	_optionChain = new HashMap<Date, Map<Double, Option>>();
+	_volatility = vol;
     }
 
     public void addOption(Option newOption) throws Exception {
@@ -23,17 +26,18 @@ public class Stock extends Security {
 	    }
 	    expirationGroup.put(newOption.getStrike(), newOption);
 	} else {
+	    // TODO - Implement exception for invalid option
 	    throw new Exception();
 	}
     }
 
     @Override
-    public double calculateDelta() {
+    public double calculateDelta(double rate, Date today) {
 	return 1;
     }
 
     @Override
-    public double calculateGamma() {
+    public double calculateGamma(double rate, Date today) {
 	return 0;
     }
 
@@ -43,6 +47,10 @@ public class Stock extends Security {
 
     public Map<Date, Map<Double, Option>> getOptionChain() {
 	return _optionChain;
+    }
+    
+    public double getVolatility() {
+	return _volatility;
     }
 
 }

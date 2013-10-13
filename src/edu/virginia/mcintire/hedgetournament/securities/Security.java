@@ -32,9 +32,9 @@ public abstract class Security {
 	_quotes.put(quote.getDate(), quote);
     }
 
-    public abstract double calculateDelta();
+    public abstract double calculateDelta(double rate, Date today);
 
-    public abstract double calculateGamma();
+    public abstract double calculateGamma(double rate, Date today);
 
     public Quote getQuote(Date date) {
 	return _quotes.get(date);
