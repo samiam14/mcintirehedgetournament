@@ -52,7 +52,18 @@ public abstract class Security {
 	return _symbol;
     }
 
-    public boolean equals(Security sec) {
-	return sec.getSymbol() == _symbol;
+    @Override
+    public boolean equals(Object obj) {
+	if(obj instanceof Security) {
+	    Security sec = (Security)obj;
+	    return sec.getSymbol() == _symbol;
+	} else {
+	    return false;
+	}
+    }
+    
+    @Override
+    public int hashCode() {
+	return _symbol.hashCode();
     }
 }
