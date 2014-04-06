@@ -4,6 +4,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.virginia.mcintire.hedgetournament.risk.RiskEngine;
+import edu.virginia.mcintire.hedgetournament.risk.StockRiskEngine;
+import edu.virginia.mcintire.hedgetournament.trading.Quote;
+
 public class Stock extends Security {
     private Map<Date, Map<Double, Option>> _optionChain;
     // TODO - Implement market volatility
@@ -31,22 +35,17 @@ public class Stock extends Security {
 	}
     }
 
-    @Override
-    public double calculateDelta(double rate, Date today) {
-	return 1;
-    }
-
-    @Override
-    public double calculateGamma(double rate, Date today) {
-	return 0;
-    }
-
     public Map<Double, Option> getExpirationGroup(Date expiration) {
 	return _optionChain.get(expiration);
     }
 
     public Map<Date, Map<Double, Option>> getOptionChain() {
 	return _optionChain;
+    }
+
+    @Override
+    public RiskEngine<Stock> getRiskEngine() {
+	return StockRiskEngine.getInstance();
     }
     
     public double getVolatility() {

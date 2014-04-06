@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import edu.virginia.mcintire.hedgetournament.risk.RiskEngine;
 import edu.virginia.mcintire.hedgetournament.trading.Quote;
 
 public abstract class Security {
@@ -32,10 +33,6 @@ public abstract class Security {
 	_quotes.put(quote.getDate(), quote);
     }
 
-    public abstract double calculateDelta(double rate, Date today);
-
-    public abstract double calculateGamma(double rate, Date today);
-
     public Quote getQuote(Date date) {
 	return _quotes.get(date);
     }
@@ -47,6 +44,8 @@ public abstract class Security {
     public Map<Date, Quote> getQuotes() {
 	return _quotes;
     }
+    
+    public abstract RiskEngine<?> getRiskEngine();
 
     public String getSymbol() {
 	return _symbol;
